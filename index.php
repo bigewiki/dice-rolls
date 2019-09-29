@@ -12,14 +12,14 @@
   </head>
   <body>
     <h1>Roll The Dice!</h1>
-    <div class="dice-game">
-     <?php include("rolldice.php"); ?>
-    </div>
-    <div class="dice-history">
-      <div class="table-wrapper">
-        <?php include("history.php"); ?> 
-      </div>
-    </div>
+    <?php
+      include("welcome.php");
+      //display the dice game they clicked submit
+      if ( isset ($_POST['submit'])){
+        include("rolldice.php");
+        include("history.php"); 
+      }
+    ?>
     <footer>
       <div id="validator"></div>
       <script>

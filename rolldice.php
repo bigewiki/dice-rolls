@@ -1,7 +1,8 @@
+<?php declare(strict_types=1);?>
+<div class="dice-game">
 <?php
-    declare(strict_types=1);
     //creating session cookies
-    $yourpath = dirname($_SERVER['SCRIPT_NAME']). '/' . "1";
+    $yourpath = dirname($_SERVER['SCRIPT_NAME']). '/';
     $sessionoptions = [ 'lifetime' => 0, 'path'=> $yourpath,'secure' => TRUE, 'httponly' => TRUE];
     session_set_cookie_params ($sessionoptions);
     session_start();
@@ -28,11 +29,5 @@
         $diceRolls[] = $thisRoll;
         echo "<div class='dice-container'><i class='fas fa-$diceIconArray[$thisRoll]'></i></div>";
     }
-    
-
-    // echo "<br/><br/>";
-    // $input = array("red", "green", "blue", "yellow");
-    // array_splice($input, 1);
-    // var_dump($input);
-
 ?>
+</div>

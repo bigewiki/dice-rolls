@@ -11,8 +11,14 @@
     <script src="https://kit.fontawesome.com/9bf2aeb3dd.js" crossorigin="anonymous"></script>
   </head>
   <body>
+    <h1>Roll The Dice!</h1>
     <div class="dice-game">
      <?php include("rolldice.php"); ?>
+    </div>
+    <div class="dice-history">
+      <div class="table-wrapper">
+        <?php include("history.php"); ?> 
+      </div>
     </div>
     <footer>
       <div id="validator"></div>

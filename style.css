@@ -1,4 +1,5 @@
-.dice-game {
+.dice-game,
+.dice-history {
   display: flex;
   width: 100%;
   justify-content: center;
@@ -9,4 +10,26 @@
   margin: 10px;
   font-size: 40px;
   color: red;
+}
+
+.table-wrapper {
+  width: 500px;
+}
+
+.table-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-wrapper table td,
+.table-wrapper table th {
+  border: 1px solid black;
+  border-spacing: 0;
+  font-size: 20px;
+  padding: 5px;
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
 }

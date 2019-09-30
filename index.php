@@ -14,7 +14,9 @@
     <h1>Roll The Dice!</h1>
       <?php
         include('session.php');
+        echo "<div class='form-wrapper'>";
         include('form.php');
+        echo "</div>";
         include('dice-game.php');
       ?>
     <footer>

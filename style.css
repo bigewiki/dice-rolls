@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Comfortaa&display=swap");
+
 .dice-game,
 .dice-history {
   display: flex;
@@ -32,4 +34,53 @@
 
 h1 {
   text-align: center;
+}
+
+body {
+  background-image: url("background-dice.jpg");
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-color: #cccccc;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  margin: 0px;
+  font-family: "Comfortaa", cursive;
+}
+
+.form-wrapper,
+.dice-game,
+.dice-history {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+form {
+  background-color: rgba(225, 225, 225, 0.5);
+  text-align: center;
+  padding: 20px;
+}
+
+form input {
+  margin: 10px;
+}
+
+.dice-table {
+  margin: 20px;
+  background-color: rgba(46, 117, 88, 0.9);
+  display: flex;
+  align-items: center;
+  border: 10px solid #34231d;
+  border-radius: 20px;
+  padding: 40px;
+}
+
+.dice-container i {
+  background-color: white;
+  margin: 0;
+  line-height: 20px;
 }

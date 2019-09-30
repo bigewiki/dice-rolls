@@ -1,4 +1,17 @@
-<?php declare(strict_types=1); ?>
+<?php
+  declare(strict_types=1);
+  //creating session cookies
+  $yourpath = dirname($_SERVER['SCRIPT_NAME']). '/';
+  $sessionoptions = [ 'lifetime' => 0, 'path'=> $yourpath,'secure' => TRUE, 'httponly' => TRUE];
+  session_set_cookie_params ($sessionoptions);
+  session_start();
+  session_regenerate_id();
+  function killsession(string $cookiepath){
+    session_unset(); 
+    session_destroy(); 
+    setcookie(session_name(),"",time() - 3600, $cookiepath);
+  } // killsession($yourpath);
+  ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,24 +26,10 @@
   </head>
   <body>
     <h1>Roll The Dice!</h1>
-    <?php
-      //creating session cookies
-      $yourpath = dirname($_SERVER['SCRIPT_NAME']). '/';
-      $sessionoptions = [ 'lifetime' => 0, 'path'=> $yourpath,'secure' => TRUE, 'httponly' => TRUE];
-      session_set_cookie_params ($sessionoptions);
-      session_start();
-      session_regenerate_id();
-      function killsession(string $cookiepath){
-        session_unset(); 
-        session_destroy(); 
-        setcookie(session_name(),"",time() - 3600, $cookiepath);
-      } // killsession($yourpath);
-      ?>
-
-
       <form method="POST" action="<?php echo $_SERVER['SCRIPT_NAME'] ?>">
         <?php
-          if(!isset($_SESSION['name']) && !isset($_POST['name'])){
+           if (!isset($_POST['name']) || isset ($_POST['reset'])){
+            killsession($yourpath);
             ?>
             <label for="fname">What's your name?</label>
             <br/>
@@ -42,13 +41,24 @@
             />
             <?php
           } else {
-            echo "<p>Welcome back, ".$_SESSION['name']."! Want to roll again?</p>";
+            echo '<input type="hidden" id="name" name="name" value='.$_SESSION['name'].'>';
+            if(!isset($_SESSION['name'])){
+              $_SESSION['name'] = $_POST['name'];
+              echo "<p>Welcome ".$_POST['name']."! We'll keep track of your rolls for you.</p>";
+            } else {
+              echo "<p>Back again, ".$_SESSION['name']."? Want to roll again?</p>";
+            }
           }
         ?>
         <br/>
         <input
-          name="submit"
+          name="rollDice"
           value="Roll Dice"
+          type="submit"
+        />
+        <input
+          name="reset"
+          value="Give Up"
           type="submit"
         />
       </form>
@@ -57,8 +67,11 @@
 
 
       <?php
-      //display the dice game they clicked submit
-      if ( isset ($_POST['submit'])){
+      //killing session if they reset
+      if (isset ($_POST['reset'])) {
+        killsession($yourpath);
+      //if they clicked roll display the dice game
+      } else if ( isset ($_POST['rollDice'])){
         echo '<div class="dice-game">';
         //storing the names for the icons used for the dice
         $diceIconArray = array('dice-d6','dice-one','dice-two','dice-three','dice-four','dice-five','dice-six');
@@ -92,9 +105,6 @@
                 </tr>
                 <?php
                     //loop through past rolls and build table
-
-
-
                     if (isset($_SESSION['pastRolls'])) {
                       //if we're storing more than 10 rolls replace it else push to array
                       if(count($_SESSION['pastRolls']) == 10){
@@ -113,8 +123,6 @@
                   }
 
 
-
-                    echo 'pastrolls:'.$_SESSION['pastRolls'];
                     for ( $i = 0; $i < count($_SESSION['pastRolls']); $i ++){
                         $rollTotal = 0;
                         echo "<tr>";

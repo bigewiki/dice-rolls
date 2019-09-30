@@ -1,21 +1,6 @@
-<?php declare(strict_types=1);?>
-<div class="dice-game">
 <?php
-    //creating session cookies
-    $yourpath = dirname($_SERVER['SCRIPT_NAME']). '/';
-    $sessionoptions = [ 'lifetime' => 0, 'path'=> $yourpath,'secure' => TRUE, 'httponly' => TRUE];
-    session_set_cookie_params ($sessionoptions);
-    session_start();
-    session_regenerate_id();
-    function killsession(string $cookiepath){
-        session_unset(); 
-        session_destroy(); 
-        setcookie(session_name(),"",time() - 3600, $cookiepath);
-    }
-    
-    // killsession($yourpath);
-
-
+    declare(strict_types=1);
+    echo '<div class="dice-game">';
     //storing the names for the icons used for the dice
     $diceIconArray = array('dice-d6','dice-one','dice-two','dice-three','dice-four','dice-five','dice-six');
     //declaring an empty array to store the dice rolls

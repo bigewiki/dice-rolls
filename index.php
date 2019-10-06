@@ -22,9 +22,17 @@
     <footer>
       <div id="validator"></div>
       <script>
+        // inserting validator
         document.getElementById(
           "validator"
         ).innerHTML = `<a href="http://validator.w3.org/nu/?doc=${window.location.href}" target="_blank">HTML 5 Validation</a>`;
+        // building anticipation
+        document.getElementById("resulting-rolls").style.display = "none";
+        setTimeout(() => {
+          document.getElementById("resulting-rolls").style.display = "flex";
+          document.getElementById("animate-rolls").style.display = "none";
+        }
+        , 1000);
       </script>
     </footer>
   </body>

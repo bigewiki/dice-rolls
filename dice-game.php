@@ -14,18 +14,32 @@
     echo '<div class="dice-game">';
         //looping over and displaying the dice rolls
         echo "<div class='dice-table'>";
-        for ( $i = 1; $i <= $numdice; $i++){
-            $thisRoll = mt_rand(1,$numsides);
-            $diceRolls[] = $thisRoll;
-            echo "<div class='dice-container'><i class='fas fa-$diceIconArray[$thisRoll]'></i></div>";
-        }
+            // silly animation
+            echo "<div id='animate-rolls'>";
+                for ( $i = 1; $i <= $numdice; $i++){
+                    echo '<div class="dice-container"><i class="fa fa-'.$diceIconArray[0].' fa-spin"></i></div>';
+                }
+            echo "</div>";
+            // the real roles
+            echo "<div id='resulting-rolls'>";
+                for ( $i = 1; $i <= $numdice; $i++){
+                    $thisRoll = mt_rand(1,$numsides);
+                    $diceRolls[] = $thisRoll;
+                    echo "<div class='dice-container'>
+                    <span class='fa-stack'>
+                        <i class='fas fa-stack-1x fa-square'></i>
+                        <i class='fas fa-stack-1x fa-$diceIconArray[$thisRoll]'></i>
+                    </span>
+                    </div>";
+                }
+            echo "</div>";
         echo "</div>";
     echo '</div>';
 ?>
 <div class="dice-history">
 <div class="table-wrapper">
 <br/><br/>
-<table>
+<table class="past-rolls">
     <tr>
         <th>Roll 1</th>
         <th>Roll 2</th>
@@ -40,7 +54,7 @@
         if (!isset($_SESSION['pastRolls'])) {
             $_SESSION['pastRolls'] = array($diceRolls);
             if(isset($_POST['name']) || !isset($_SESSION['name'])){
-                $_SESSION['name'] = $_POST['name'];
+                $_SESSION['name'] = sanitizeName($_POST['name']);
             }
         //else if we're storing more than 10 rolls replace it else push to array
         } else if (isset($_SESSION['pastRolls'])) {

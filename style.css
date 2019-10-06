@@ -9,7 +9,6 @@
 
 .dice-container {
   padding: 10px;
-  margin: 10px;
   font-size: 40px;
   color: red;
 }
@@ -40,6 +39,8 @@ html {
   position: absolute;
   min-height: 100%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 body {
@@ -47,14 +48,12 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-color: #cccccc;
-  position: absolute;
-  min-height: 100%;
-  width: 100%;
   display: flex;
   flex-direction: column;
   padding: 0px;
   margin: 0px;
   font-family: "Comfortaa", cursive;
+  flex: 1;
 }
 
 .form-wrapper,
@@ -66,9 +65,10 @@ body {
 }
 
 form {
-  background-color: rgba(225, 225, 225, 0.5);
+  background-color: rgba(225, 225, 225, 0.7);
   text-align: center;
   padding: 20px;
+  border: 1px solid black;
 }
 
 form input {
@@ -78,17 +78,25 @@ form input {
 .dice-table {
   margin: 20px;
   background-color: rgba(46, 117, 88, 0.9);
-  display: flex;
-  align-items: center;
   border: 10px solid #34231d;
   border-radius: 20px;
   padding: 40px;
+  width: 600px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.dice-container i {
-  background-color: white;
-  margin: 0;
-  line-height: 20px;
+#resulting-rolls,
+#animate-rolls {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+table.past-rolls {
+  background-color: rgba(225, 225, 225, 0.7);
 }
 
 footer {
@@ -100,4 +108,13 @@ footer {
 
 footer div#validator {
   padding: 10px;
+}
+
+.fa-stack {
+  font-size: 32px;
+}
+
+.fa-square {
+  color: white;
+  font-size: 30px;
 }

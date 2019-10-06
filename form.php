@@ -3,7 +3,7 @@
         if (!isset($_POST['name']) || isset ($_POST['reset'])){
         killsession($yourpath);
     ?>
-    <label for="name">What's your name?</label>
+    <label for="name">Welcome! What's your name?</label>
     <br/>
     <input
         name="name"
